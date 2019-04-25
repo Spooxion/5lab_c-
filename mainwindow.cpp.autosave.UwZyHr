@@ -1,0 +1,178 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "bird.h"
+
+
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+
+    ui->setupUi(this);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+
+void MainWindow::on_tableWidget_2_cellPressed(int row, int column)
+{
+   chosed_row2 = row;
+   chosed_column2 = column;
+}
+
+void MainWindow::on_tableWidget_cellPressed(int row, int column)
+{
+    chosed_row1 = row;
+    chosed_column1 = column;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString buffer;
+    buffer.setNum(counter1 +1);
+    rows1.push_back(buffer);
+
+    ui->tableWidget->insertRow(counter1);
+    ui->tableWidget->setVerticalHeaderLabels(rows1);
+
+
+    Bird* b = new Domestic;
+    this->bird1[counter1]=b;
+
+    QString a = ui->lineEdit->text();
+    QTableWidgetItem *item = new QTableWidgetItem();
+    item->setText(this->bird1[counter1]->getName());
+    ui->tableWidget->setItem(counter1, 0, item);
+
+    QTableWidgetItem *item1 = new QTableWidgetItem();
+    item1->setText(this->bird1[counter1]->getWeight());
+    ui->tableWidget->setItem(counter1, 1, item1);
+
+    QTableWidgetItem *item2 = new QTableWidgetItem();
+    item2->setText(this->bird1[counter1]->getAge());
+    ui->tableWidget->setItem(counter1, 2, item2);
+
+    QTableWidgetItem *item3 = new QTableWidgetItem();
+    item3->setText(this->bird1[counter1]->getTypeofFly());
+    ui->tableWidget->setItem(counter1, 3, item3);
+
+    QTableWidgetItem *item4 = new QTableWidgetItem();
+    item4->setText(this->bird1[counter1]->getMale());
+    ui->tableWidget->setItem(counter1, 4, item4);
+
+    QTableWidgetItem *item5 = new QTableWidgetItem();
+    item5->setText(static_cast<Domestic*>(bird1[counter1])->getUseful());
+    ui->tableWidget->setItem(counter1, 5, item5);
+
+    QTableWidgetItem *item6 = new QTableWidgetItem();
+    item6->setText(static_cast<Domestic*>(bird1[counter1])->getNickName());
+    ui->tableWidget->setItem(counter1, 6, item6);
+
+
+
+    counter1++;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+    ui->tableWidget->removeRow(chosed_row1);
+    if(counter1 == 0 )
+    {
+        QMessageBox::warning(this, "Ошибка", "Таблица на данный момент пустая");
+    }
+    else {
+        chosed_row1 = ui->tableWidget->selectionModel()->currentIndex().row();
+        for(int i = chosed_row1; i < rows1.size() - 1; ++i)
+        {
+            QString str;
+            str.setNum(i+1);
+            rows1[i] = str;
+        }
+        rows1.erase(--rows1.end());
+        ui->tableWidget->setVerticalHeaderLabels(rows1);
+
+        counter1--;
+        }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString buffer;
+    buffer.setNum(counter2 +1);
+    rows2.push_back(buffer);
+
+    ui->tableWidget_2->insertRow(counter2);
+    ui->tableWidget_2->setVerticalHeaderLabels(rows2);
+
+
+    Bird* B = new Wild;
+   this->bird2[counter2]=B;
+
+
+    QTableWidgetItem *Item = new QTableWidgetItem();
+    Item->setText(this->bird2[counter2]->getName());
+    ui->tableWidget_2->setItem(counter2, 0, Item);
+
+    QTableWidgetItem *Item1 = new QTableWidgetItem();
+    Item1->setText(this->bird2[counter2]->getWeight());
+    ui->tableWidget_2->setItem(counter2, 1, Item1);
+
+    QTableWidgetItem *Item2 = new QTableWidgetItem();
+    Item2->setText(this->bird2[counter2]->getAge());
+    ui->tableWidget_2->setItem(counter2, 2, Item2);
+
+    QTableWidgetItem *Item3 = new QTableWidgetItem();
+    Item3->setText(this->bird2[counter2]->getTypeofFly());
+    ui->tableWidget_2->setItem(counter2, 3, Item3);
+
+    QTableWidgetItem *Item4 = new QTableWidgetItem();
+    Item4->setText(this->bird2[counter2]->getMale());
+    ui->tableWidget_2->setItem(counter2, 4, Item4);
+
+    QTableWidgetItem *Item5 = new QTableWidgetItem();
+    Item5->setText(static_cast<Wild*>(bird2[counter2])->getTypeofFood());
+    ui->tableWidget_2->setItem(counter2, 5, Item5);
+
+    QTableWidgetItem *Item6 = new QTableWidgetItem();
+    Item6->setText(static_cast<Wild*>(bird2[counter2])->getFearofMan());
+    ui->tableWidget_2->setItem(counter2, 6, Item6);
+
+    counter2++;
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->tableWidget_2->removeRow(chosed_row2);
+    if(counter2 == 0)
+    {
+        QMessageBox::warning(this, "Ошибка", "Таблица на данный момент пустая");
+    }
+    else {
+        chosed_row2 = ui->tableWidget_2->selectionModel()->currentIndex().row();
+        for(int i = chosed_row2; i < rows2.size() - 1; ++i)
+        {
+            QString str;
+            str.setNum(i+1);
+            rows2[i] = str;
+        }
+        rows2.erase(--rows2.end());
+        ui->tableWidget_2->setVerticalHeaderLabels(rows2);
+
+        counter2--;
+
+    }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    this->close();
+}
+
+

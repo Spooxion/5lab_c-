@@ -1,0 +1,130 @@
+#ifndef BIRD_H
+#define BIRD_H
+
+#include <iostream>
+#include<QString>
+
+class Bird
+{
+
+protected:
+    QString name;
+    float weight;
+    int age;
+    int counter=0;
+    std::string type_of_fly;
+    std::string male;
+
+public:
+
+  //конструктор по умолчанию.
+  Bird(){
+        name="не известно";
+        weight=0;
+        age=0;
+        type_of_fly="не известно";
+        male= "не известно";
+  }
+  virtual ~Bird(){}
+  QString getName(){
+      return name;
+  }
+  std::string getTypeofFly(){
+      return type_of_fly;
+  }
+  std::string getMale(){
+      return male;
+  }
+  int getCounter(){
+      return counter;
+  }
+  float getWeight (){
+      return weight;
+  }
+  int getAge(){
+      return age;
+  }
+  void setName(QString name1){
+      name=name1;
+  }
+  void setTypeofFly(std::string fly1){
+      type_of_fly=fly1;
+  }
+  void setMale(std::string male1){
+      male=male1;
+  }
+  void setAge(int age1){
+      age=age1;
+  }
+  void setWeight(float weight1){
+      weight=weight1;
+  }
+  void setCounter(int counter1){
+      counter=counter1;
+  }
+
+};
+
+
+class Wild : public Bird
+{
+private:
+    Wild(Bird* obj1){}
+    std::string type_of_food;
+    std::string fear_of_man;
+public:
+    Wild() {
+            setTypeofFood("не известно");
+            setFearofMan("не известно");
+            setName("не известно");
+            setWeight(0);
+            setAge(0);
+            setTypeofFly("не известно");
+            setMale("не известно");
+        }
+    void setTypeofFood(std::string type1){
+        type_of_food=type1;
+    }
+    std::string getTypeofFood(){
+        return type_of_food;
+    }
+    void setFearofMan(std::string fear1){
+        fear_of_man=fear1;
+    }
+    std::string getNickName(){
+        return fear_of_man;
+    }
+};
+
+class Domestic : public Bird
+{
+private:
+    Domestic(Bird* obj1){}
+    std::string nickname;
+    std::string useful;
+public:
+    Domestic() {
+            setNickName("не известно");
+            setUseful("не известно");
+            setName("не известно");
+            setWeight(0);
+            setAge(0);
+            setTypeofFly("не известно");
+            setMale("не известно");
+        }
+
+    void setNickName(std::string nickname1){
+        nickname=nickname1;
+    }
+    std::string getNickName(){
+        return nickname;
+    }
+    void setUseful(std::string useful1){
+        useful=useful1;
+    }
+    std::string getUseful(){
+        return useful;
+    }
+};
+
+#endif // BIRD_H

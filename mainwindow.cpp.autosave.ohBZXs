@@ -1,0 +1,61 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+ #include <QMessageBox>
+#include <iostream>
+
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+void MainWindow::on_tableWidget_2_cellPressed(int row, int column)
+{
+   chosed_row2 = row;
+   chosed_column2 = column;
+}
+
+void MainWindow::on_tableWidget_cellPressed(int row, int column)
+{
+    chosed_row1 = row;
+    chosed_column1 = column;
+}
+void MainWindow::on_pushButton_clicked()
+{
+    QString buffer;
+    buffer.setNum(counter1 +1);
+    rows1.push_back(buffer);
+
+    ui->tableWidget->insertRow(counter1);
+    ui->tableWidget->setVerticalHeaderLabels(rows1);
+    counter1++;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->tableWidget->removeRow(chosed_row1);
+    if(counter1 == 0) 
+    {
+        QMessageBox box = new QMessageBox("ERROR", "table is clean", QMessageBox::Ok, this,Qt::D)
+    }
+    for(int i = chosed_row1; i < rows1.size() - 1; ++i)
+    {
+        QString str;
+        str.setNum(i+1);
+        rows1[i] = str;
+    }
+    rows1.erase(--rows1.end());
+    ui->tableWidget->setVerticalHeaderLabels(rows1);
+
+    counter1--;
+
+}

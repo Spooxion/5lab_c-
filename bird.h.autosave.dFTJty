@@ -1,0 +1,134 @@
+#ifndef BIRD_H
+#define BIRD_H
+
+#include <iostream>
+#include<QString>
+
+class Bird
+{
+
+protected:
+    QString name;
+    QString weight;
+    QString age;
+    QString counter=0;
+    QString type_of_fly;
+    QString male;
+
+public:
+
+  //конструктор по умолчанию.
+  Bird(){
+        name="не известно";
+        weight="0";
+        age="0";
+        type_of_fly="не известно";
+        male= "не известно";
+  }
+  virtual ~Bird(){}
+  QString getName(){
+      return name;
+  }
+  QString getTypeofFly(){
+      return type_of_fly;
+  }
+  QString getMale(){
+      return male;
+  }
+  QString getCounter(){
+      return counter;
+  }
+  QString getWeight (){
+      return weight;
+  }
+  QString getAge(){
+      return age;
+  }
+  void setName(QString name1){
+      name=name1;
+  }
+  void setTypeofFly(QString fly1){
+      type_of_fly=fly1;
+  }
+  void setMale(QString male1){
+      male=male1;
+  }
+  void setAge(QString age1){
+      age=age1;
+  }
+  void setWeight(QString weight1){
+      weight=weight1;
+  }
+  void setCounter(QString counter1){
+      counter=counter1;
+  }
+  
+  virtual getNickName
+  
+  
+
+};
+
+
+class Wild : public Bird
+{
+private:
+    Wild(Bird* obj1){}
+    QString type_of_food;
+    QString fear_of_man;
+public:
+    Wild() {
+            setTypeofFood("не известно");
+            setFearofMan("не известно");
+            setName("не известно");
+            setWeight("0");
+            setAge("0");
+            setTypeofFly("не известно");
+            setMale("не известно");
+        }
+    void setTypeofFood(QString type1){
+        type_of_food=type1;
+    }
+    QString getTypeofFood(){
+        return type_of_food;
+    }
+    void setFearofMan(QString fear1){
+        fear_of_man=fear1;
+    }
+    QString getNickName(){
+        return fear_of_man;
+    }
+};
+
+class Domestic : public Bird
+{
+private:
+    Domestic(Bird* obj1){}
+    QString nickname;
+    QString useful;
+public:
+    Domestic() {
+            setNickName("не известно");
+            setUseful("не известно");
+            setName("не известно");
+            setWeight("0");
+            setAge("0");
+            setTypeofFly("не известно");
+            setMale("не известно");
+        }
+
+    void setNickName(QString nickname1){
+        nickname=nickname1;
+    }
+    QString getNickName(){
+        return nickname;
+    }
+    void setUseful(QString useful1){
+        useful=useful1;
+    }
+    QString getUseful(){
+        return useful;
+    }
+};
+
+#endif // BIRD_H

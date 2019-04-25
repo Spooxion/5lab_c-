@@ -1,0 +1,11 @@
+#ifndef DOMESTIC_H
+#define DOMESTIC_H
+
+
+class domestic
+{
+public:
+    domestic();
+};
+
+#endif // DOMESTIC_H

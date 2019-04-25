@@ -1,0 +1,40 @@
+#ifndef BIRD_H
+#define BIRD_H
+
+#include <iostream>
+#include <string>
+
+class Bird
+{
+private:
+  std::string name;
+  std::string nickname;
+  float weight;
+  int age;
+protected:
+
+
+public:
+  std::string getName(){
+      return name;
+  }
+  std::string getNickName(){
+      return nickname;
+  }
+  float ge
+};
+
+
+class Wild : public Bird
+{
+public:
+
+};
+
+class Domestic : public Bird
+{
+public:
+
+};
+
+#endif // BIRD_H
